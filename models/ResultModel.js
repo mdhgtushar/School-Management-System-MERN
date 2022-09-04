@@ -28,7 +28,7 @@ const ResultSchema = mongoose.Schema({
 });
 
 //define the model
-const ResultModel = mongoose.model("magazine", ResultSchema);
+const ResultModel = mongoose.model("result", ResultSchema);
 
 //export the module
 module.exports = ResultModel;

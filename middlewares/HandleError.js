@@ -2,7 +2,8 @@ const HandleError = (err, req, res, next) => {
   res.json({
     success: false,
     status: err.status || 404,
-    message: req.message || "Something went wrong...",
+    message: err.message || "Something went wrong...(MEH)",
+    stack: err.stack,
   });
 };
 

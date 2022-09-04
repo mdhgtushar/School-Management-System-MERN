@@ -35,7 +35,7 @@ const StudentSchema = mongoose.Schema({
 });
 
 //define the model
-const StudentModel = mongoose.model("class", StudentSchema);
+const StudentModel = mongoose.model("student", StudentSchema);
 
 //export the module
 module.exports = StudentModel;

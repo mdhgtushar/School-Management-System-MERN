@@ -32,7 +32,7 @@ const TeacherSchema = mongoose.Schema({
 });
 
 //define the model
-const TeacherModel = mongoose.model("class", TeacherSchema);
+const TeacherModel = mongoose.model("teacher", TeacherSchema);
 
 //export the module
 module.exports = TeacherModel;

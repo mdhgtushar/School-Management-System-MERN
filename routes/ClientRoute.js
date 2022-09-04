@@ -9,3 +9,6 @@ ClientRoute.route("/notice");
 ClientRoute.route("/magazine");
 ClientRoute.route("/event");
 ClientRoute.route("/result");
+
+//export the module
+module.exports = ClientRoute;

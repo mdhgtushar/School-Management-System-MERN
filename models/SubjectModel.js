@@ -15,7 +15,7 @@ const SubjectSchema = mongoose.Schema({
 });
 
 //define the model
-const SubjectModel = mongoose.model("class", SubjectSchema);
+const SubjectModel = mongoose.model("subject", SubjectSchema);
 
 //export the module
 module.exports = SubjectModel;

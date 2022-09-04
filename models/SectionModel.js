@@ -12,7 +12,7 @@ const SectionSchema = mongoose.Schema({
 });
 
 //define the model
-const SectionModel = mongoose.model("class", SectionSchema);
+const SectionModel = mongoose.model("section", SectionSchema);
 
 //export the module
 module.exports = SectionModel;

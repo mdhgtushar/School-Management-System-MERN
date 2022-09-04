@@ -17,7 +17,7 @@ const NoticeSchema = mongoose.Schema({
   },
 });
 //define the model
-const NoticeModel = mongoose.model("magazine", NoticeSchema);
+const NoticeModel = mongoose.model("notice", NoticeSchema);
 
 //export the module
 module.exports = NoticeModel;
