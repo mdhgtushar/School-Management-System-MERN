@@ -13,7 +13,7 @@ const NoticeSchema = mongoose.Schema({
     requierd: true,
   },
   body: {
-    type: Text,
+    type: String,
   },
 });
 //define the model

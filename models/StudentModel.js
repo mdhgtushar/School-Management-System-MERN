@@ -7,11 +7,12 @@ const mongoose = require("mongoose");
 const StudentSchema = mongoose.Schema({
   student_id: {
     type: Number,
+    unique: true,
   },
   student: {
     full_name: { type: String },
     image: { type: String },
-    class: { type: String },
+    class_name: { type: String },
     section: { type: String },
     blood_group: { type: String },
     hobby: { type: String },

@@ -27,6 +27,7 @@ mongoose.connect(process.env.MONGODB, (err) => {
 //routing
 app.get("/", (req, res) => res.send("App is running"));
 app.use("/api/client", ClientRoute);
+
 app.use("/api/admin", AdminRoute);
 
 //error handeling

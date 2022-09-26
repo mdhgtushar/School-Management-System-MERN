@@ -23,10 +23,10 @@ const TeacherSchema = mongoose.Schema({
   subject: {
     type: String,
   },
-  description: {
-    type: Text,
-  },
   blood_group: {
+    type: String,
+  },
+  description: {
     type: String,
   },
 });

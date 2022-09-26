@@ -67,7 +67,7 @@ app.update = async (req, res, next) => {
 //delete
 app.delete = async (req, res, next) => {
   try {
-    const subject_single = await SubjectModel.findById(req.body.id);
+    const subject_single = await SubjectModel.findById(req.query.id);
     if (subject_single) {
       await subject_single.remove();
       res.send({ success: true, message: "successfully deleted" });

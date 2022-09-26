@@ -1,0 +1,49 @@
+table {
+  width: 100%;
+}
+tr {
+  border: 1px solid;
+  background-color: #ddd;
+  text-align: left;
+}
+td {
+  padding: 5px;
+}
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+}
+li {
+  display: inline-block;
+}
+.header {
+  background-color: cadetblue;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+div {
+  padding: 0;
+}
+h1 {
+  display: block;
+}
+.home {
+  display: flex;
+  justify-content: space-evenly;
+}
+.home li {
+  display: block;
+  list-style: armenian;
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+  margin: 20px 0;
+}
+.form {
+  display: flex;
+  justify-content: space-around;
+}
