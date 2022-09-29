@@ -4,21 +4,24 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const Students = () => {
+  //Declaring States
   const [students, setStudent] = useState([]);
   const [class_name, setClass] = useState([]);
   const [section, setSection] = useState([]);
-  const [blood_group, setBlood_group] = useState([
-    "A+",
-    "A-",
-    "B+",
-    "B-",
-    "AB+",
-    "AB-",
-    "O+",
-    "O-",
-  ]);
+  const [query, setQuery] = useState();
+  const [section_name, setSection_name] = useState();
+
+  //Assigning Values
+  const blood_group = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+
+  //Http Requests To Get Data
   const get_students = async () => {
-    const data = await axios.get("http://localhost:5000/api/admin/student");
+    const data = await axios.get("http://localhost:5000/api/admin/student", {
+      params: {
+        class_name: query,
+        section: section_name,
+      },
+    });
     setStudent(data.data);
   };
   const get_classs = async () => {
@@ -29,20 +32,24 @@ const Students = () => {
     const data = await axios.get("http://localhost:5000/api/admin/section");
     setSection(data.data);
   };
+
+  //UseEffect Hook
   useEffect(() => {
     get_students();
     get_classs();
     get_secton();
-  }, []);
+  }, [query, section_name]);
+
+  //Createing A Student
   const createStudent = async (e) => {
     e.preventDefault();
     const saveStudent = await axios.post(
       "http://localhost:5000/api/admin/student/create",
       {
-        student_id: Math.random(),
-        student: {
-          full_name: "hello Student",
-        },
+        full_name: e.target.full_name.value,
+        class_name: e.target.class_name.value,
+        section: e.target.section.value,
+        blood_group: e.target.blood_group.value,
       }
     );
     if (saveStudent) {
@@ -50,6 +57,8 @@ const Students = () => {
       get_students();
     }
   };
+
+  //Delete A student
   const deleteStudent = async (id) => {
     const deleteStudent = await axios.delete(
       "http://localhost:5000/api/admin/student/delete",
@@ -64,57 +73,46 @@ const Students = () => {
       get_students();
     }
   };
-  const students_list = students.map((student, key) => {
-    return (
-      <tr key={key}>
-        <td>{student.student?.full_name}</td>
-        <td>{student.student?.class_name}</td>
-        <td>{student.student?.section}</td>
-        <td>{student.student?.blood_group}</td>
-        <td>{student.parent?.father.full_name}</td>
-        <td>{student.parent?.mother.full_name}</td>
-        <td>
-          <button
-            style={{ color: "red" }}
-            onClick={() => deleteStudent(student._id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    );
-  });
-  const class_select_box = class_name.map((class_n, key) => {
-    return <option value={class_n.class_name}>{class_n.class_name}</option>;
-  });
-  const section_select_list = section.map((section, key) => {
-    return <option value={section.section_name}>{section.section_name}</option>;
-  });
-  const blood_group_select_list = blood_group.map((group, key) => {
-    return <option value={group}>{group}</option>;
-  });
+
   return (
-    <div>
+    <>
+      {/* Submit Student From */}
       <form action="" onSubmit={(e) => createStudent(e)}>
         <h2>Student's info</h2>
         <input type="text" placeholder="Full Name" name="full_name" />
-        <select name="" id="">
+        <select name="class_name" id="">
           <option value="null" disabled selected>
             Select Class Name
           </option>
-          {class_select_box}
+          {class_name.map((class_n, key) => {
+            return (
+              <option key={key} value={class_n.class_name}>
+                {class_n.class_name}
+              </option>
+            );
+          })}
         </select>
         <select name="section" id="">
           <option value="null" disabled selected>
             Select Class Section
           </option>
-          {section_select_list}
+          {section.map((section, key) => {
+            return (
+              <option key={key} value={section.section_name}>
+                {section.section_name}
+              </option>
+            );
+          })}
         </select>
         <select name="blood_group" id="">
           <option value="null" disabled selected>
             Select Class Blood Group
           </option>
-          {blood_group_select_list}
+          {blood_group.map((group, key) => (
+            <option key={key} value={group}>
+              {group}
+            </option>
+          ))}
         </select>
         <h2>Parents's info</h2>
         <input type="text" placeholder="Father's Name" />
@@ -127,8 +125,53 @@ const Students = () => {
         <input type="text" placeholder="Mother's Phone" />
         <input type="text" placeholder="Mother's Email" />
         <br />
+        <br />
         <input type="submit" value="Submit" />
       </form>
+
+      <hr />
+
+      {/* Filters Paramaters */}
+      <div>
+        <span
+          onClick={() => {
+            setQuery("");
+            setSection_name("");
+          }}
+        >
+          View All
+        </span>
+        {class_name.map((class_n, key) => {
+          const data = section.map((section, key) => {
+            return (
+              <>
+                <button
+                  onClick={() => {
+                    setQuery(class_n.class_name);
+                    setSection_name(section.section_name);
+                  }}
+                >
+                  {class_n.class_name} - {section.section_name}
+                </button>{" "}
+              </>
+            );
+          });
+          return data;
+        })}
+      </div>
+      <hr />
+
+      {/* Showing Students List Table */}
+      <p>
+        Showing Result for:
+        {query && section_name ? (
+          <span>
+            {query} {section_name}
+          </span>
+        ) : (
+          "All Shwoing"
+        )}
+      </p>
       <table>
         <thead>
           <tr>
@@ -142,17 +185,28 @@ const Students = () => {
           </tr>
         </thead>
 
-        {students_list.length > 0 ? (
-          <tbody>{students_list}</tbody>
-        ) : (
-          <tbody>
+        <tbody>
+          {students.map((student) => (
             <tr>
-              <td>"Something wrong.."</td>
+              <td>{student.student?.full_name}</td>
+              <td>{student.student?.class_name}</td>
+              <td>{student.student?.section}</td>
+              <td>{student.student?.blood_group}</td>
+              <td>{student.parent?.father.full_name}</td>
+              <td>{student.parent?.mother.full_name}</td>
+              <td>
+                <button
+                  style={{ color: "red" }}
+                  onClick={() => deleteStudent(student._id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </tbody>
-        )}
+          ))}
+        </tbody>
       </table>
-    </div>
+    </>
   );
 };
 

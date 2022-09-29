@@ -6,7 +6,10 @@ const app = {};
 //All (with filter)
 app.get_all = async (req, res, next) => {
   try {
-    const student_list = await StudentModel.find();
+    const student_list = await StudentModel.find({
+      "student.class_name": req.query.class_name || /[a-zA-Z]/,
+      "student.section": req.query.section || /[a-zA-Z]/,
+    }).exec();
     res.send(student_list);
   } catch (err) {
     next(err);
@@ -36,6 +39,7 @@ app.create = async (req, res, next) => {
     const { full_name, section, class_name, blood_group } = req.body;
 
     const setudent_obj = new StudentModel({
+      student_id: Math.random(),
       student: {
         full_name,
         class_name,
