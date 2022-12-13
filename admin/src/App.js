@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Notice from "./pages/Notice";
-import Teachers from "./pages/Teachers";
+import Teachers from "./pages/client/Teachers";
 import Magazine from "./pages/Magazine";
 import Students from "./pages/Students";
 import Event from "./pages/Event";
@@ -13,6 +13,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Forget from "./pages/auth/Forget";
 import Client from "./layout/Client";
+import Teacher from "./pages/client/Teacher";
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
 
         <Route path="/" element={<Client />}>
           <Route path="/" element={<Home />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/teachers/:id" element={<Teacher />} />
           <Route path="/*" element={"Page Not Found"} />
         </Route>
       </Routes>

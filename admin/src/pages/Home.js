@@ -2,9 +2,9 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="w-full">
       <div>
-        <h3>Client Features</h3>
+        <b>Client Features</b>
         <ul>
           <li>Home Page</li>
           <li>Teacher: List and Single view</li>
@@ -16,7 +16,7 @@ const Home = () => {
         </ul>
       </div>
       <div>
-        <h3>Admin Features</h3>
+        <b>Admin Features</b>
         <ol>
           <li>Teacher: List, view, Create, Update, Delete </li>
           <li>Student: List, view, Create, Update, Delete </li>
@@ -30,11 +30,13 @@ const Home = () => {
         </ol>
       </div>
       <div>
-        <h3>Secondery Features</h3>
+        <b>Secondery Features</b>
         <ol>
           <li>one</li>
         </ol>
       </div>
+
+
     </div>
   );
 };
