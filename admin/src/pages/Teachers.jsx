@@ -112,7 +112,9 @@ const Teachers = () => {
         <input name="description" placeholder="Description"></input>
         <input type="submit" value="Submit" />
       </form>
-      <table>
+      <br />
+      <br />
+      <table className="w-full">
         <thead>
           <tr>
             <th>Name</th>
