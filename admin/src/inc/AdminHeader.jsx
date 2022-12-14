@@ -32,6 +32,7 @@ const AdminHeader = () => {
           <li>
             <Link to="/admin/">Home</Link> ||{" "}
             <Link to="/admin/teachers">Teachers</Link> ||{" "}
+            <Link to="/admin/teachers/add">Add Teacher</Link> ||{" "}
             <Link to="/admin/students">Students</Link> ||{" "}
             <Link to="/admin/notice">Notice</Link> ||{" "}
             <Link to="/admin/magazine">Magazine</Link> ||{" "}

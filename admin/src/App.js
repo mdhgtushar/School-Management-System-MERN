@@ -14,6 +14,7 @@ import Register from "./pages/auth/Register";
 import Forget from "./pages/auth/Forget";
 import Client from "./layout/Client";
 import Teacher from "./pages/client/Teacher";
+import AddTeacher from "./pages/admin/AddTeacher";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="admin" element={<Admin />}>
           <Route path="students" element={<Students />} />
           <Route path="teachers" element={<Teachers />} />
+          <Route path="teachers/add" element={<AddTeacher />} />
           <Route path="notice" element={<Notice />} />
           <Route path="magazine" element={<Magazine />} />
           <Route path="events" element={<Event />} />
