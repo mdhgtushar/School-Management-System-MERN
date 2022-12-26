@@ -15,26 +15,16 @@ const Admin = () => {
             <AdminHeader />
           </div>
           <div className="flex-1 h-screen overflow-scroll">
-            <div className="overflow-hidden p-5">
+            <div className="overflow-hidden p-5 bg-green-100">
               <h2 className="float-left">
                 <Link to="/admin">
-                  Modern school V1.0
-                  <small>
-                    <b>(Admin.beta)</b>
-                  </small>
+                  <b>MODERN SCHOOL V1.0</b>
                 </Link>
               </h2>
               {isLoggedInn ? (
                 <ul className="float-right inline-block">
                   <li>
-                    <Link to="/admin/">Home</Link> ||{" "}
-                    <Link to="/admin/teachers">Teachers</Link> ||{" "}
-                    <Link to="/admin/students">Students</Link> ||{" "}
-                    <Link to="/admin/notice">Notice</Link> ||{" "}
-                    <Link to="/admin/magazine">Magazine</Link> ||{" "}
-                    <Link to="/admin/events">Events</Link> ||{" "}
-                    <Link to="/admin/result">Result</Link> ||{" "}
-                    <Link to="/">Main Site </Link> ||{" "}
+                    <Link to="/admin/">Settings</Link>
                   </li>
                 </ul>
               ) : (

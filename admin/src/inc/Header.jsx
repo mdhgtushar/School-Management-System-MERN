@@ -58,13 +58,27 @@ const Header = () => {
         <div className="container mx-auto">
           <ul>
             <li>
-              <Link to="/">Home</Link> || <Link to="/teachers">Teachers</Link>{" "}
-              || <Link to="/students">Students</Link> ||{" "}
-              <Link to="/notice">Notice</Link> ||{" "}
-              <Link to="/magazine">Magazine</Link> ||{" "}
-              <Link to="/events">Events</Link> ||{" "}
-              <Link to="/result">Result</Link> ||{" "}
-              <Link to="/admin">Admin Panel</Link> ||{" "}
+              <Link to="/" className="px-2 hover:text-green-500 ">
+                Home
+              </Link>{" "}
+              <Link to="/teachers" className="px-2 hover:text-green-500 ">
+                Teachers
+              </Link>{" "}
+              <Link to="/students" className="px-2 hover:text-green-500 ">
+                Students
+              </Link>{" "}
+              <Link to="/notice" className="px-2 hover:text-green-500 ">
+                Notice
+              </Link>{" "}
+              <Link to="/magazine" className="px-2 hover:text-green-500 ">
+                Magazine
+              </Link>{" "}
+              <Link to="/events" className="px-2 hover:text-green-500 ">
+                Events
+              </Link>
+              <Link to="/result" className="px-2 hover:text-green-500 ">
+                Result
+              </Link>{" "}
               {isLoggedInn && (
                 <span
                   onClick={logoutAction}

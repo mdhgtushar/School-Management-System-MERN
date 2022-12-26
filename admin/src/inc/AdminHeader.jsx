@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn, logOut } from "../slices/authSlice";
+import MenuButton from "../components/MenuButton1";
 
 const AdminHeader = () => {
   const isLoggedInn = useSelector(isLoggedIn);
@@ -27,26 +28,73 @@ const AdminHeader = () => {
           </div>
         </div>
       </Link>
+
       {isLoggedInn ? (
-        <ul className="float-right inline-block">
-          <li>
-            <Link to="/admin/">Home</Link> ||{" "}
-            <Link to="/admin/teachers">Teachers</Link> ||{" "}
-            <Link to="/admin/teachers/add">Add Teacher</Link> ||{" "}
-            <Link to="/admin/students">Students</Link> ||{" "}
-            <Link to="/admin/notice">Notice</Link> ||{" "}
-            <Link to="/admin/magazine">Magazine</Link> ||{" "}
-            <Link to="/admin/events">Events</Link> ||{" "}
-            <Link to="/admin/result">Result</Link> ||{" "}
-            <Link to="/">Main Site </Link> ||{" "}
-            <span
-              onClick={logoutAction}
-              className="text-red-500 bold cursor-pointer"
-            >
-              Logout
-            </span>
-          </li>
-        </ul>
+        <nav>
+          <p className="w-full border-b-2 pt-2 border-gray-400 mt-4 text-md font-normal">
+            Dashboard
+          </p>
+          <MenuButton
+            active={true}
+            btn={1}
+            goLink={"/admin"}
+            title="DASHBORD"
+          />
+          <div>
+            <p className="w-full border-b-2 pt-2 border-gray-400 mt-4 text-md font-normal">
+              Modules
+            </p>
+
+            <MenuButton
+              active={false}
+              btn={2}
+              goLink={"/admin/teachers"}
+              title="Teachers"
+            />
+            <MenuButton
+              active={false}
+              btn={2}
+              goLink={"/admin/students"}
+              title="Students"
+            />
+            <MenuButton
+              active={false}
+              btn={2}
+              goLink={"/admin/notice"}
+              title="Notice"
+            />
+            <MenuButton
+              active={false}
+              btn={2}
+              goLink={"/admin/magazine"}
+              title="Magazine"
+            />
+            <MenuButton
+              active={false}
+              btn={2}
+              goLink={"/admin/events"}
+              title="Events"
+            />
+            <MenuButton
+              active={false}
+              btn={2}
+              goLink={"/admin/result"}
+              title="Result"
+            />
+            <p className="w-full border-b-2 pt-2 border-gray-400 mt-4 text-md font-normal">
+              Action
+            </p>
+            <div onClick={logoutAction}>
+              <MenuButton active={false} btn={2} goLink={"#"} title="Logout" />
+              <MenuButton
+                active={false}
+                btn={2}
+                goLink={"/"}
+                title="Main Site "
+              />
+            </div>
+          </div>
+        </nav>
       ) : (
         <ul className="float-right inline-block">
           <li>

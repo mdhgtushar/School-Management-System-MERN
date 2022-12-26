@@ -83,7 +83,7 @@ const Footer = () => {
               ADMISSION
             </p>
             <p href="notice.php" class="footermenu">
-              NOTICE BORD
+              <Link to="/admin">Admin Panel</Link>{" "}
             </p>
           </div>
         </div>

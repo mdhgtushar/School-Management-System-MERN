@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -77,58 +78,267 @@ const Teachers = () => {
     get_teachers();
   }, []);
 
-  const teachers_list = teachers.map((teacher, key) => {
-    return (
-      <tr key={key}>
-        <td>{teacher.full_name}</td>
-        <td>{teacher.email}</td>
-        <td>{teacher.phone}</td>
-        <td>{teacher.education}</td>
-        <td>{teacher.subject}</td>
-        <td>{teacher.blood_group}</td>
-        <td>{teacher.description}</td>
-        <td>
-          <button
-            onClick={() => deleteData(teacher._id)}
-            style={{ color: "red" }}
-          >
-            DELETE
-          </button>
-        </td>
-      </tr>
-    );
-  });
   return (
     <div>
       {success}
-      <form action="" onSubmit={(e) => submit_teacher(e)}>
-        <h2>Teacher's info</h2>
-        <input type="text" placeholder="Full Name" name="full_name" />
-        <input type="text" placeholder="Email" name="email" />
-        <input type="text" placeholder="Phone" name="phone" />
-        <input type="text" placeholder="Education" name="education" />
-        <input type="text" placeholder="Subject" name="subject" />
-        <input type="text" placeholder="Blood Group" name="blood_group" />
-        <input name="description" placeholder="Description"></input>
-        <input type="submit" value="Submit" />
-      </form>
-      <br />
-      <br />
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Education</th>
-            <th>Subject</th>
-            <th>Blood Group</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{teachers_list}</tbody>
-      </table>
+      <div class="w-full">
+        <div className="bg-green-100 p-3">
+          <h2>Welcome to Z.M.INTERNATIONAL SCHOOL</h2>
+        </div>
+        <form class=" bg-white py-5" onSubmit={(e) => submit_teacher(e)}>
+          <div class="grid grid-cols-3 gap-6 mb-5">
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="username"
+              >
+                Full Name
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="username"
+                type="text"
+                placeholder="User Name"
+                name="full_name"
+              />
+            </div>
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="email"
+              >
+                Email
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email"
+                type="text"
+                placeholder="Email"
+                name="email"
+              />
+            </div>
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="phone"
+              >
+                Phone
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phone"
+                type="text"
+                placeholder="Phone"
+                name="phone"
+              />
+            </div>
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="education"
+              >
+                Education
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="education"
+                type="text"
+                placeholder="Education"
+                name="education"
+              />
+            </div>
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="subject"
+              >
+                Subject
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="subject"
+                type="text"
+                placeholder="subject"
+                name="subject"
+              />
+            </div>
+
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="blood_group"
+              >
+                Blood Group
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="blood_group"
+                type="text"
+                placeholder="Blood Group"
+                name="blood_group"
+              />
+            </div>
+
+            <div class="">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="description"
+                placeholder="Description"
+              >
+                Description
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="description"
+                type="text"
+                placeholder="description"
+                name="description"
+              />
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-green-200 hover:text-white text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div className="bg-green-100 p-3 mb-5">
+        <h2>Welcome to Z.M.INTERNATIONAL SCHOOL</h2>
+      </div>
+      <div className="flex flex-col">
+        <div className="overflow-x-scroll">
+          <div className="w-full inline-block align-middle">
+            <table className="min-w-full divide-y divide-gray-200 border">
+              <thead className="bg-green-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    ID
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Phone
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Education
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Subject
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Blood Group
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
+                  >
+                    Description
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
+                  >
+                    Edit
+                  </th>
+
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
+                  >
+                    Delete
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {teachers.map((teacher, key) => {
+                  return (
+                    <tr key={key}>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                        {++key}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.full_name}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.email}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.phone}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.education}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.subject}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.blood_group}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
+                        {teacher.description}
+                      </td>
+                      <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                        <a
+                          className="text-green-500 hover:text-green-700"
+                          href="#"
+                        >
+                          Edit
+                        </a>
+                      </td>
+                      <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                        <a
+                          className="text-red-500 hover:text-red-700"
+                          href="#"
+                          onClick={() => deleteData(teacher._id)}
+                        >
+                          Delete
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

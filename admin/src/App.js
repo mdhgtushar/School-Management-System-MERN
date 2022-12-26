@@ -1,12 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import Notice from "./pages/Notice";
+import ClientNotice from "./pages/client/Notice";
 import Teachers from "./pages/client/Teachers";
 import Magazine from "./pages/Magazine";
-import Students from "./pages/Students";
+import ClientMagazine from "./pages/client/Magazine";
+import AdminStudents from "./pages/Students";
+import Students from "./pages/client/Students";
 import Event from "./pages/Event";
 import Home from "./pages/Home";
 import Result from "./pages/Result";
-import Header from "./inc/Header";
+import ClientResult from "./pages/client/Result";
+import AdminTeachers from "./pages/Teachers"
 import Admin from "./layout/Admin";
 import Auth from "./layout/Auth";
 import Login from "./pages/auth/Login";
@@ -15,19 +19,21 @@ import Forget from "./pages/auth/Forget";
 import Client from "./layout/Client";
 import Teacher from "./pages/client/Teacher";
 import AddTeacher from "./pages/admin/AddTeacher";
+import Events from "./pages/client/Events";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="admin" element={<Admin />}>
-          <Route path="students" element={<Students />} />
-          <Route path="teachers" element={<Teachers />} />
+          <Route path="students" element={<AdminStudents />} />
+          <Route path="teachers" element={<AdminTeachers />} />
           <Route path="teachers/add" element={<AddTeacher />} />
           <Route path="notice" element={<Notice />} />
           <Route path="magazine" element={<Magazine />} />
           <Route path="events" element={<Event />} />
           <Route path="result" element={<Result />} />
+          <Route path="*" element={"Page Not Found"} />
         </Route>
         <Route path="auth" element={<Auth />}>
           <Route path="login" element={<Login />} />
@@ -37,8 +43,13 @@ function App() {
 
         <Route path="/" element={<Client />}>
           <Route path="/" element={<Home />} />
+          <Route path="/result" element={<ClientResult />} />
+          <Route path="/notice" element={<ClientNotice />} />
+          <Route path="/magazine" element={<ClientMagazine />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/teachers" element={<Teachers />} />
           <Route path="/teachers/:id" element={<Teacher />} />
+          <Route path="/students" element={<Students />} />
           <Route path="/*" element={"Page Not Found"} />
         </Route>
       </Routes>
