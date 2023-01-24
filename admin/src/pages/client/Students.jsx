@@ -1,5 +1,5 @@
-import React from "react";
-import Teacher from "../../components/Teacher";
+import React from 'react';
+import Teacher from '../../components/Student';
 
 const Students = () => {
   return (

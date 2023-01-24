@@ -19,6 +19,7 @@ dotenv.config();
 mongoose.connect(process.env.MONGODB, (err) => {
   if (err) {
     console.log("DB NOT CONNECTED");
+    console.log(err)
   } else {
     console.log("DB CONNECTED");
   }

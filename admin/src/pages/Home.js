@@ -1,17 +1,23 @@
 import React from "react";
 import Teacher from "../components/Teacher";
+import site_settings from "../Site";
+import parse from 'html-react-parser';
 
 const Home = () => {
+  const language = 'en';
+
+  if (!site_settings.pages.home.view) {
+    return <div>This page is unavilable</div>
+  }
   return (
     <div className="w-full">
 
 
 
-
-      <div className="flex pb-5">
+      {site_settings.pages.home.blocks.principal_speech && <div className="flex pb-5">
         <div className="flex-1 pr-2">
-          <div className="bg-green-100 p-3">
-            <h2>Welcome to Z.M.INTERNATIONAL SCHOOL</h2>
+          <div className="bg-gray-200 p-3">
+            <h2 className="text-xl">{site_settings.blocks.principal_speech.title_1[language]}</h2>
           </div>
           <div className="py-3 px-2 flex justify-between">
             <div className="">
@@ -42,38 +48,41 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="p-2 bg-green-100 text-center">
+        <div className="p-2 bg-gray-200 text-center">
           <img className="w-72" src="http://localhost/ZM-International-School-PHP/zmadminschool/img/1.jpg" alt="" />
           <h2>Z.M.INTERNATIONAL SCHOOL</h2>
           <p>Principal</p>
         </div>
-      </div>
+      </div>}
+
+      {site_settings.pages.home.blocks.featured_teacher_list &&
+        <div className="mb-5">
+          <div className="bg-gray-200 p-3 mb-3">
+            <h2>{site_settings.blocks.featured_teacher_list.title_1[language]}</h2>
+          </div>
+          <div class="grid grid-cols-3 gap-4">
+            <Teacher />
+            <Teacher />
+            <Teacher />
+          </div>
+        </div>}
+      {site_settings.pages.home.blocks.features &&
+        <div className="mb-5">
+          <div className="bg-gray-200 p-3 mb-3">
+            <h2>{site_settings.blocks.features.title_1[language]}</h2>
+          </div>
+          <div>
+            <ul>
+              {site_settings.blocks.features.description_1[language].map((data) => {
+                return <li>{parse(data)}</li>
+              })}
+            </ul>
+          </div>
+        </div>
+      }
 
 
-      <div className="mb-5">
-        <div className="bg-green-100 p-3 mb-3">
-          <h2>Z.M.INTERNATIONAL SCHOOL TEACHERS LIST</h2>
-        </div>
-        <div class="grid grid-cols-3 gap-4">
-          <Teacher />
-          <Teacher />
-          <Teacher />
-        </div>
-      </div>
 
-
-      <div className="mb-5">
-        <div className="bg-green-100 p-3 mb-3">
-          <h2>Z.M.INTERNATIONAL SCHOOL Features </h2>
-        </div>
-        <div>
-          <ul>
-            <li>hello</li>
-            <li>hello</li>
-            <li>hello</li>
-          </ul>
-        </div>
-      </div>
 
     </div>
   );

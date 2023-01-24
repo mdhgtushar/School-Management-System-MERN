@@ -1,28 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { isLoggedIn, logOut } from "../slices/authSlice";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { isLoggedIn, logOut } from '../slices/authSlice';
+import site_settings from '../Site';
+import parse from 'html-react-parser';
 
 const Header = () => {
+  const language = 'en';
   const isLoggedInn = useSelector(isLoggedIn);
   const dispatch = useDispatch();
   const logoutAction = () => {
-    const is_confirmed = window.confirm("Are You Sure? You Want to Logout");
-    is_confirmed ? dispatch(logOut()) : alert("Thank Your for Staying");
+    const is_confirmed = window.confirm('Are You Sure? You Want to Logout');
+    is_confirmed ? dispatch(logOut()) : alert('Thank Your for Staying');
   };
   return (
     <div>
-      <div class=" bg-green-100 p-2">
+      <div class=" bg-gray-100 p-2">
         <div class="container mx-auto flex justify-between">
           <div class="">
-            <p>Email: zzmism2020@gmail.com || Mob: +8801712498815</p>
+            <p>
+              Email: {site_settings.school.info.email} || Mob: {site_settings.school.info.phone}
+            </p>
           </div>
           <div class="nav1right">
-            <a
-              class="fl-r"
-              href="https://www.facebook.com/md.hg.tushar/"
-              target="blank"
-            >
+            <a class="fl-r" href="https://www.facebook.com/md.hg.tushar/" target="blank">
               Developer
             </a>
           </div>
@@ -33,15 +34,11 @@ const Header = () => {
           <Link to="/">
             <div className="flex items-center">
               <div class="p-5 pl-0">
-                <img
-                  className="h-20 w-20"
-                  src="http://localhost/ZM-International-School-PHP/zmadminschool/img/logo.jpg"
-                  alt=""
-                />
+                <img className="h-20 w-20" src={site_settings.school.logo} alt="" />
               </div>
               <div class="logotitle">
-                <b>Z.M.INTERNATIONAL SCHOOL</b>
-                <h4>zminternationalschool.com</h4>
+                <b>{parse(site_settings.school.title[language])}</b>
+                <h4>{parse(site_settings.school.short_description[language])}</h4>
               </div>
             </div>
           </Link>
@@ -54,43 +51,47 @@ const Header = () => {
           </a>
         </div>
       </div>
-      <div className="bg-green-100 overflow-hidden p-3">
+      <div className="bg-gray-200 overflow-hidden p-1">
         <div className="container mx-auto">
-          <ul>
-            <li>
-              <Link to="/" className="px-2 hover:text-green-500 ">
+          <ul className="flex justify-between font-bold items-center m-0 overflow-hidden">
+            <li className="flex justify-between items-center">
+              <Link to="/" className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1">
                 Home
-              </Link>{" "}
-              <Link to="/teachers" className="px-2 hover:text-green-500 ">
+              </Link>{' '}
+              <Link
+                to="/teachers"
+                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+              >
                 Teachers
-              </Link>{" "}
-              <Link to="/students" className="px-2 hover:text-green-500 ">
+              </Link>{' '}
+              <Link
+                to="/students"
+                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+              >
                 Students
-              </Link>{" "}
-              <Link to="/notice" className="px-2 hover:text-green-500 ">
+              </Link>{' '}
+              <Link
+                to="/notice"
+                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+              >
                 Notice
-              </Link>{" "}
-              <Link to="/magazine" className="px-2 hover:text-green-500 ">
-                Magazine
-              </Link>{" "}
-              <Link to="/events" className="px-2 hover:text-green-500 ">
-                Events
-              </Link>
-              <Link to="/result" className="px-2 hover:text-green-500 ">
+              </Link>{' '}
+              <Link
+                to="/result"
+                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+              >
                 Result
-              </Link>{" "}
+              </Link>{' '}
+            </li>
+            <li>
               {isLoggedInn && (
-                <span
-                  onClick={logoutAction}
-                  className="text-red-500 bold cursor-pointer"
-                >
+                <span onClick={logoutAction} className="text-red-500 bold cursor-pointer">
                   Logout
                 </span>
               )}
               {!isLoggedInn && (
                 <span>
-                  <Link to="/auth/login"> Login</Link> ||{" "}
-                  <Link to="/auth/register"> Register</Link>
+                  <Link to="/auth/login"> Login</Link> || <Link to="/auth/register"> Register</Link>
                 </span>
               )}
             </li>

@@ -1,7 +1,16 @@
-import React from "react";
-import Teacher from "../../components/Teacher";
+import React from 'react';
+import Teacher from '../../components/Teacher';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData, teacherSliceData } from '../../slices/teacherSlice';
+import { useEffect } from 'react';
 
 const Teachers = () => {
+  const { data, error, loading } = useSelector(teacherSliceData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
   return (
     <div className="w-full">
       <div className="bg-green-100 p-3">
@@ -9,15 +18,15 @@ const Teachers = () => {
       </div>
       <br />
       <div class="grid grid-cols-1 gap-4">
-        <Teacher />
-        <Teacher />
-        <Teacher />
-        <Teacher />
-        <Teacher />
-        <Teacher />
-        <Teacher />
-        <Teacher />
-        <Teacher />
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Faild to load teachers</div>
+        ) : (
+          data?.map((teacher) => {
+            return <Teacher info={teacher} />;
+          })
+        )}
       </div>
     </div>
   );

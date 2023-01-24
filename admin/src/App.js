@@ -20,11 +20,15 @@ import Client from "./layout/Client";
 import Teacher from "./pages/client/Teacher";
 import AddTeacher from "./pages/admin/AddTeacher";
 import Events from "./pages/client/Events";
+import Redux from "./pages/Redux";
+
 
 function App() {
   return (
     <div>
       <Routes>
+
+        {/* Admin Routes are described */}
         <Route path="admin" element={<Admin />}>
           <Route path="students" element={<AdminStudents />} />
           <Route path="teachers" element={<AdminTeachers />} />
@@ -35,12 +39,15 @@ function App() {
           <Route path="result" element={<Result />} />
           <Route path="*" element={"Page Not Found"} />
         </Route>
+
+        {/* Auth Route are described */}
         <Route path="auth" element={<Auth />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forget" element={<Forget />} />
         </Route>
 
+        {/* Client Route Are described */}
         <Route path="/" element={<Client />}>
           <Route path="/" element={<Home />} />
           <Route path="/result" element={<ClientResult />} />
@@ -50,6 +57,7 @@ function App() {
           <Route path="/teachers" element={<Teachers />} />
           <Route path="/teachers/:id" element={<Teacher />} />
           <Route path="/students" element={<Students />} />
+          <Route path="/redux" element={<Redux />} />
           <Route path="/*" element={"Page Not Found"} />
         </Route>
       </Routes>

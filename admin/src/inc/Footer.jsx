@@ -1,9 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import site_settings from '../Site';
+import parse from 'html-react-parser';
 
 const Footer = () => {
+  const language = 'en';
   return (
-    <section className="bg-green-100">
+    <section className="bg-gray-100">
       <div className="container mx-auto">
         <div class="flex justify-between pt-10">
           <div class="wd6">
@@ -11,29 +14,21 @@ const Footer = () => {
               <Link to="/">
                 <div className="flex items-center">
                   <div class="p-5 pl-0">
-                    <img
-                      className="h-20 w-20"
-                      src="http://localhost/ZM-International-School-PHP/zmadminschool/img/logo.jpg"
-                      alt=""
-                    />
+                    <img className="h-20 w-20" src={site_settings.school.logo} alt="" />
                   </div>
                   <div class="logotitle">
-                    <b>Z.M.INTERNATIONAL SCHOOL</b>
-                    <h4>zminternationalschool.com</h4>
+                    <b>{parse(site_settings.school.title[language])}</b>
+                    <h4>{parse(site_settings.school.short_description[language])}</h4>
                   </div>
                 </div>
               </Link>
               <b>School Address :</b>
-              <p>
-                SHAHID MINAR ROAD, NATUN BAZAR,
-                <br />
-                BIRAMPUR, DINAJPUR.
-              </p>
+              <p>{parse(site_settings.school.info.address)}</p>
               <b>Contact info :</b>
               <p>
-                Email : zzmism2020@gmail.com
+                Email : {parse(site_settings.school.info.email)}
                 <br />
-                Mob : +8801712498815
+                Mob : {parse(site_settings.school.info.phone)}
               </p>
             </div>
           </div>
@@ -83,7 +78,7 @@ const Footer = () => {
               ADMISSION
             </p>
             <p href="notice.php" class="footermenu">
-              <Link to="/admin">Admin Panel</Link>{" "}
+              <Link to="/admin">Admin Panel</Link>{' '}
             </p>
           </div>
         </div>
