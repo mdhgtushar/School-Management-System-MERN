@@ -49,7 +49,7 @@ const Home = () => {
           </div>
         </div>
         <div className="p-2 bg-gray-200 text-center">
-          <img className="w-72" src="http://localhost/ZM-International-School-PHP/zmadminschool/img/1.jpg" alt="" />
+          <img className="w-72" src="https://mlis.edu.bd/wp-content/uploads/2022/12/pr2.jpg" alt="" />
           <h2>Z.M.INTERNATIONAL SCHOOL</h2>
           <p>Principal</p>
         </div>

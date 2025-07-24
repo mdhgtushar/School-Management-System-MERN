@@ -1,6 +1,6 @@
 const site_settings = {
     "school": {
-        "logo": "https://gafargaongovtcollege.edu.bd/images/gvlogo2.png",
+        "logo": "https://thumbs.dreamstime.com/b/education-badge-logo-design-university-high-school-emblem-education-badge-logo-design-university-high-school-emblem-151924849.jpg",
         "title": {
             "en": "Z.M.INTERNATIONAL SCHOOL",
             "bn": "Z.M.INTERNATIONAL SCHOOL"

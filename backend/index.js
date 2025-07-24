@@ -6,7 +6,7 @@ const cors = require("cors");
 
 //internal imports
 const ClientRoute = require("./routes/ClientRoute");
-const AdminRoute = require("./routes/AdminRoute");
+const FrontendRoute = require("./routes/FrontendRoute");
 const HandleError = require("./middlewares/HandleError");
 
 //init
@@ -16,7 +16,7 @@ app.use(cors());
 dotenv.config();
 
 //dbconnect
-mongoose.connect(process.env.MONGODB, (err) => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/school_MS', (err) => {
   if (err) {
     console.log("DB NOT CONNECTED");
     console.log(err)
@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGODB, (err) => {
 app.get("/", (req, res) => res.send("App is running"));
 app.use("/api/client", ClientRoute);
 
-app.use("/api/admin", AdminRoute);
+app.use("/api/frontend", FrontendRoute);
 
 //error handeling
 app.use(HandleError);

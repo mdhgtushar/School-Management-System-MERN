@@ -14,91 +14,110 @@ const Header = () => {
     is_confirmed ? dispatch(logOut()) : alert('Thank Your for Staying');
   };
   return (
-    <div>
-      <div class=" bg-gray-100 p-2">
-        <div class="container mx-auto flex justify-between">
-          <div class="">
-            <p>
-              Email: {site_settings.school.info.email} || Mob: {site_settings.school.info.phone}
-            </p>
+    <header className="shadow bg-white">
+      {/* Top Bar */}
+      <div className="bg-slate-100 border-b border-slate-200 text-sm text-slate-700">
+        <div className="container mx-auto flex justify-between items-center py-1 px-4">
+          <div>
+            <span className="font-medium">Email:</span> {site_settings.school.info.email}
+            <span className="mx-2">|</span>
+            <span className="font-medium">Mob:</span> {site_settings.school.info.phone}
           </div>
-          <div class="nav1right">
-            <a class="fl-r" href="https://www.facebook.com/md.hg.tushar/" target="blank">
+          <div>
+            <a
+              className="text-green-700 hover:text-green-900 font-semibold transition"
+              href="https://www.facebook.com/md.hg.tushar/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Developer
             </a>
           </div>
         </div>
       </div>
-      <div class="container mx-auto">
-        <div class="flex items-center justify-between">
-          <Link to="/">
-            <div className="flex items-center">
-              <div class="p-5 pl-0">
-                <img className="h-20 w-20" src={site_settings.school.logo} alt="" />
-              </div>
-              <div class="logotitle">
-                <b>{parse(site_settings.school.title[language])}</b>
-                <h4>{parse(site_settings.school.short_description[language])}</h4>
-              </div>
-            </div>
-          </Link>
-          <a href="admit.php" class="smnone">
-            <img
-              className="h-20"
-              src="http://localhost/ZM-International-School-PHP/zmadminschool/img/shivam.jpg"
-              alt=""
-            />
-          </a>
-        </div>
+      {/* Main Header */}
+      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between py-3 px-4">
+        <Link to="/" className="flex items-center gap-3">
+          <img className="h-16 w-16 object-contain" src={site_settings.school.logo} alt="School Logo" />
+          <div className="ml-2">
+            <div className="text-xl font-bold text-green-900 leading-tight">{parse(site_settings.school.title[language])}</div>
+            <div className="text-sm text-slate-500">{parse(site_settings.school.short_description[language])}</div>
+          </div>
+        </Link>
+        <a href="admit.php" className="hidden sm:block ml-6">
+          <img
+            className="h-16 rounded shadow-md border border-slate-200"
+            src="https://nbpi.edu.np/wp-content/uploads/2021/08/admission-open.gif"
+            alt="Admit"
+          />
+        </a>
       </div>
-      <div className="bg-gray-200 overflow-hidden p-1">
-        <div className="container mx-auto">
-          <ul className="flex justify-between font-bold items-center m-0 overflow-hidden">
-            <li className="flex justify-between items-center">
-              <Link to="/" className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1">
+      {/* Navigation Bar */}
+      <nav className="bg-green-800 border-t border-b border-green-900">
+        <div className="container mx-auto px-4">
+          <ul className="flex flex-wrap justify-between items-center py-2 m-0">
+            <li className="flex flex-wrap gap-2 items-center">
+              <Link
+                to="/"
+                className="px-4 py-1 rounded bg-green-700 text-white font-medium hover:bg-green-900 transition shadow-sm"
+              >
                 Home
-              </Link>{' '}
+              </Link>
               <Link
                 to="/teachers"
-                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+                className="px-4 py-1 rounded bg-slate-200 text-green-900 font-medium hover:bg-green-100 hover:text-green-800 transition"
               >
                 Teachers
-              </Link>{' '}
+              </Link>
               <Link
                 to="/students"
-                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+                className="px-4 py-1 rounded bg-slate-200 text-green-900 font-medium hover:bg-green-100 hover:text-green-800 transition"
               >
                 Students
-              </Link>{' '}
+              </Link>
               <Link
                 to="/notice"
-                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+                className="px-4 py-1 rounded bg-slate-200 text-green-900 font-medium hover:bg-green-100 hover:text-green-800 transition"
               >
                 Notice
-              </Link>{' '}
+              </Link>
               <Link
                 to="/result"
-                className="px-5 py-1 hover:text-gray-500 bg-gray-300 text-white mr-1"
+                className="px-4 py-1 rounded bg-slate-200 text-green-900 font-medium hover:bg-green-100 hover:text-green-800 transition"
               >
                 Result
-              </Link>{' '}
+              </Link>
             </li>
             <li>
-              {isLoggedInn && (
-                <span onClick={logoutAction} className="text-red-500 bold cursor-pointer">
+              {isLoggedInn ? (
+                <button
+                  onClick={logoutAction}
+                  className="px-4 py-1 rounded bg-red-600 text-white font-semibold hover:bg-red-700 transition shadow-sm"
+                >
                   Logout
-                </span>
-              )}
-              {!isLoggedInn && (
-                <span>
-                  <Link to="/auth/login"> Login</Link> || <Link to="/auth/register"> Register</Link>
+                </button>
+              ) : (
+                <span className="space-x-2">
+                  <Link
+                    to="/auth/login"
+                    className="px-3 py-1 rounded bg-green-600 text-white font-medium hover:bg-green-800 transition"
+                  >
+                    Login
+                  </Link>
+                  <span className="text-slate-300">|</span>
+                  <Link
+                    to="/auth/register"
+                    className="px-3 py-1 rounded bg-green-600 text-white font-medium hover:bg-green-700 transition"
+                  >
+                    Register
+                  </Link>
                 </span>
               )}
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 
