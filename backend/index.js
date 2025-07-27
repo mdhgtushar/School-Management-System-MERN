@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/school_MS
 app.get("/", (req, res) => res.send("App is running"));
 app.use("/api/client", ClientRoute);
 
-app.use("/api/frontend", FrontendRoute);
+app.use("/api/admin", FrontendRoute);
 
 //error handeling
 app.use(HandleError);

@@ -2,23 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Student = ({ info }) => {
+  // Generate avatar based on student name
+  const getAvatarUrl = (name) => {
+    const colors = ['blue', 'green', 'purple', 'pink', 'indigo', 'yellow', 'red', 'teal'];
+    const color = colors[name.length % colors.length];
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${color}&color=fff&size=96`;
+  };
+
   return (
-    <div class="w-full border border-gray-200 ">
-      <div class="flex items-center justify-between p-5">
-        <div className="pl-5">
-          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Hobayer Golondaz</h5>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Class : One, Section: B</span>
+    <div className="w-full border border-gray-200">
+      <div className="flex items-center justify-between">
+        <div className="p-5 flex-1">
+          <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+            {info?.name || 'Student Name'}
+          </h5>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Class: {info?.class || 'N/A'}, Section: {info?.section || 'N/A'}
+          </span>
           <br />
-          <small>Z.M.INTERNATIONAL SCHOOL</small>
-          <hr />
-          <Link to="/teachers/12" className="text-green-700">
+          <small className="text-gray-600">Blood Group: {info?.bloodGroup || 'N/A'}</small>
+          <hr className="my-2" />
+          <Link to={`/students/${info?.id || '1'}`} className="text-green-700 hover:text-green-900">
             View Profile
           </Link>
         </div>
         <img
-          class="w-24 h-24 rounded-full shadow-lg p-1"
-          src="https://media-exp1.licdn.com/dms/image/C5603AQGWy7nn6aUz2Q/profile-displayphoto-shrink_200_200/0/1627676865563?e=1674691200&v=beta&t=MEVUibO-Z_SkROM-oxpqr06kXI90nSC5LDWcHTHXJrM"
-          alt="Bonnie"
+          className="w-24 h-full pr-5 "
+          src={getAvatarUrl(info?.name || 'Student')}
+          alt={info?.name || 'Student'}
         />
       </div>
     </div>

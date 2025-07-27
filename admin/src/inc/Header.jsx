@@ -26,9 +26,9 @@ const Header = () => {
           <div>
             <a
               className="text-green-700 hover:text-green-900 font-semibold transition"
-              href="https://www.facebook.com/md.hg.tushar/"
+              href="https://mdhgtushar.github.io/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="Hobayer Golondaz Tushar"
             >
               Developer
             </a>
@@ -81,6 +81,12 @@ const Header = () => {
               >
                 Notice
               </Link>
+              {/* <Link
+                to="/magazine"
+                className="px-4 py-1 rounded bg-slate-200 text-green-900 font-medium hover:bg-green-100 hover:text-green-800 transition"
+              >
+                Magazine
+              </Link> */}
               <Link
                 to="/result"
                 className="px-4 py-1 rounded bg-slate-200 text-green-900 font-medium hover:bg-green-100 hover:text-green-800 transition"

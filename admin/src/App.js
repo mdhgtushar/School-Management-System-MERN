@@ -6,11 +6,15 @@ import Magazine from "./pages/Magazine";
 import ClientMagazine from "./pages/client/Magazine";
 import AdminStudents from "./pages/Students";
 import Students from "./pages/client/Students";
+import Student from "./pages/client/Student";
 import Event from "./pages/Event";
 import Home from "./pages/Home";
 import Result from "./pages/Result";
 import ClientResult from "./pages/client/Result";
 import AdminTeachers from "./pages/Teachers"
+import Classes from "./pages/Classes";
+import Sections from "./pages/Sections";
+import AdminNotice from "./pages/admin/Notice";
 import Admin from "./layout/Admin";
 import Auth from "./layout/Auth";
 import Login from "./pages/auth/Login";
@@ -33,7 +37,9 @@ function App() {
           <Route path="students" element={<AdminStudents />} />
           <Route path="teachers" element={<AdminTeachers />} />
           <Route path="teachers/add" element={<AddTeacher />} />
-          <Route path="notice" element={<Notice />} />
+          <Route path="classes" element={<Classes />} />
+          <Route path="sections" element={<Sections />} />
+          <Route path="notice" element={<AdminNotice />} />
           <Route path="magazine" element={<Magazine />} />
           <Route path="events" element={<Event />} />
           <Route path="result" element={<Result />} />
@@ -57,6 +63,7 @@ function App() {
           <Route path="/teachers" element={<Teachers />} />
           <Route path="/teachers/:id" element={<Teacher />} />
           <Route path="/students" element={<Students />} />
+          <Route path="/students/:id" element={<Student />} />
           <Route path="/redux" element={<Redux />} />
           <Route path="/*" element={"Page Not Found"} />
         </Route>

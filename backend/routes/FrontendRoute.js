@@ -76,6 +76,7 @@ FrontendRoute.route("/notice/view").get(NoticeController.get_single);
 FrontendRoute.route("/notice/create").post(NoticeController.create);
 FrontendRoute.route("/notice/update").put(NoticeController.update);
 FrontendRoute.route("/notice/delete").delete(NoticeController.delete);
+FrontendRoute.route("/notice/toggle-status").put(NoticeController.toggle_status);
 
 //event
 FrontendRoute.route("/event/").get(EventController.get_all);

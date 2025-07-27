@@ -7,43 +7,37 @@ import AdminHeader from '../inc/AdminHeader';
 const Admin = () => {
   const isLoggedInn = useSelector(isLoggedIn);
 
+  if (!isLoggedInn) return <Navigate to="/auth/login" />;
+
   return (
-    <div>
-      {isLoggedInn ? (
-        <div className="flex">
-          <div className="p-5 w-96 h-screen bg-gray-100 overflow-scroll">
-            <AdminHeader />
-          </div>
-          <div className="flex-1 h-screen overflow-scroll">
-            <div className="overflow-hidden p-5 bg-gray-100">
-              <h2 className="float-left">
-                <Link to="/admin">
-                  <b>MODERN SCHOOL V1.0</b>
-                </Link>
-              </h2>
-              {isLoggedInn ? (
-                <ul className="float-right inline-block">
-                  <li>
-                    <Link to="/admin/">Settings</Link>
-                  </li>
-                </ul>
-              ) : (
-                <ul className="float-right inline-block">
-                  <li>
-                    <Link to="/auth/login">Login</Link> || <Link to="/auth/register">Register</Link>
-                  </li>
-                </ul>
-              )}
-            </div>
-            <hr />
-            <div className="p-5">
-              <Outlet />
-            </div>
-          </div>
-        </div>
-      ) : (
-        <Navigate to="/auth/login" />
-      )}
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <div className="w-80 bg-gray-100 border-r border-gray-300 overflow-y-auto">
+        <AdminHeader />
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Top Header */}
+        <header className="bg-white shadow-md p-4 flex justify-between items-center border-b border-gray-200">
+          <Link to="/admin" className="text-xl font-bold text-blue-700 tracking-wide">
+            MODERN SCHOOL V1.0
+          </Link>
+          <nav>
+            <ul className="flex gap-4 text-sm text-gray-700 font-medium">
+              <li>
+                <Link to="/admin/">Settings</Link>
+              </li>
+              {/* Add more links here if needed */}
+            </ul>
+          </nav>
+        </header>
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto bg-gray-50">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };
