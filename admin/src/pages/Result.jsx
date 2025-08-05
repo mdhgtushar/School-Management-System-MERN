@@ -9,8 +9,10 @@ const Result = () => {
   const [showdata, setShowdata] = useState();
   const [class_name, setClass] = useState([]);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const get_classs = async () => {
-    const data = await axios.get("http://localhost:5000/api/admin/class");
+    const data = await axios.get(`${API_BASE_URL}/api/admin/class`);
     setClass(data.data);
   };
   useEffect(() => {

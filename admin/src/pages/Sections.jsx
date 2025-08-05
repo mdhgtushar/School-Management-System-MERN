@@ -8,11 +8,13 @@ const Sections = () => {
   const [loading, setLoading] = useState(false);
   const [editingSection, setEditingSection] = useState(null);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   // Get all sections
   const getSections = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/section");
+      const response = await axios.get(`${API_BASE_URL}/api/admin/section`);
       setSections(response.data);
     } catch (error) {
       console.error("Error fetching sections:", error);
@@ -40,14 +42,14 @@ const Sections = () => {
 
       if (editingSection) {
         // Update existing section
-        await axios.put(`http://localhost:5000/api/admin/section/update`, {
+        await axios.put(`${API_BASE_URL}/api/admin/section/update`, {
           id: editingSection._id,
           ...formData
         });
         alert("Section updated successfully!");
       } else {
         // Create new section
-        await axios.post("http://localhost:5000/api/admin/section/create", formData);
+        await axios.post(`${API_BASE_URL}/api/admin/section/create`, formData);
         alert("Section created successfully!");
       }
 
@@ -65,7 +67,7 @@ const Sections = () => {
   const deleteSection = async (id) => {
     if (window.confirm("Are you sure you want to delete this section?")) {
       try {
-        await axios.delete("http://localhost:5000/api/admin/section/delete", {
+        await axios.delete(`${API_BASE_URL}/api/admin/section/delete`, {
           params: { id }
         });
         alert("Section deleted successfully!");

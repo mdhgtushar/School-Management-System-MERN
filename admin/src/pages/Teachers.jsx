@@ -16,6 +16,8 @@ const Teachers = () => {
   const [success, setSuccess] = useState();
   const [showForm, setShowForm] = useState(false);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const submit_teacher = async (e) => {
     e.preventDefault();
 
@@ -27,7 +29,7 @@ const Teachers = () => {
     const blood_group = e.target.blood_group.value;
     const description = e.target.description.value;
 
-    const submit = await axios.post('http://localhost:5000/api/admin/teacher/create', {
+    const submit = await axios.post(`${API_BASE_URL}/api/admin/teacher/create`, {
       full_name,
       email,
       phone,
@@ -45,7 +47,7 @@ const Teachers = () => {
   };
 
   const deleteData = async (id) => {
-    const delteData = await axios.delete('http://localhost:5000/api/admin/teacher/delete', {
+    const delteData = await axios.delete(`${API_BASE_URL}/api/admin/teacher/delete`, {
       params: {
         id: id
       }

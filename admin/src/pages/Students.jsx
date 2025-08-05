@@ -17,11 +17,13 @@ const Students = () => {
   //Assigning Values
   const blood_group = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   //Http Requests To Get Data
   const get_students = async () => {
     setLoading(true);
     try {
-      const data = await axios.get("http://localhost:5000/api/admin/student", {
+      const data = await axios.get(`${API_BASE_URL}/api/admin/student`, {
         params: {
           class_name: query,
           section: section_name,
@@ -37,7 +39,7 @@ const Students = () => {
 
   const get_classs = async () => {
     try {
-      const data = await axios.get("http://localhost:5000/api/admin/class");
+      const data = await axios.get(`${API_BASE_URL}/api/admin/class`);
       setClass(data.data);
     } catch (error) {
       console.error("Error fetching classes:", error);
@@ -46,7 +48,7 @@ const Students = () => {
 
   const get_secton = async () => {
     try {
-      const data = await axios.get("http://localhost:5000/api/admin/section");
+      const data = await axios.get(`${API_BASE_URL}/api/admin/section`);
       setSection(data.data);
     } catch (error) {
       console.error("Error fetching sections:", error);
@@ -65,7 +67,7 @@ const Students = () => {
     e.preventDefault();
     try {
       const saveStudent = await axios.post(
-        "http://localhost:5000/api/admin/student/create",
+        `${API_BASE_URL}/api/admin/student/create`,
         {
           full_name: e.target.full_name.value,
           class_name: e.target.class_name.value,
@@ -98,7 +100,7 @@ const Students = () => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       try {
         const deleteStudent = await axios.delete(
-          "http://localhost:5000/api/admin/student/delete",
+          `${API_BASE_URL}/api/admin/student/delete`,
           {
             params: {
               id: id,

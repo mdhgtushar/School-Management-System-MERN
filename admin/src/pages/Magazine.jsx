@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 const Notice = () => {
   const [notice, setNotice] = useState([]);
   const get_notice = async () => {
-    const data = await axios.get("http://localhost:5000/api/admin/magazine");
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+    const data = await axios.get(`${API_BASE_URL}/api/admin/magazine`);
     setNotice(data.data);
   };
   useEffect(() => {

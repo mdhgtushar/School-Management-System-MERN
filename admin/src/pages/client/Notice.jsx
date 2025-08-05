@@ -11,11 +11,13 @@ const Notice = () => {
     fetchNotices();
   }, []);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   const fetchNotices = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://localhost:5000/api/admin/notice/', {
+      const response = await axios.get(`${API_BASE_URL}/api/admin/notice/`, {
         params: { isActive: true }
       });
       

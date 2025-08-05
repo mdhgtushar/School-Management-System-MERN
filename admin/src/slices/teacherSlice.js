@@ -2,8 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 const initialState = { data: null, error: null, loading: false };
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export const fetchData = createAsyncThunk(' ', async () => {
-    const response = await fetch('http://localhost:5000/api/admin/teacher');
+    const response = await fetch(`${API_BASE_URL}/api/admin/teacher`);
     const data = await response.json();
     return data;
 });

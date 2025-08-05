@@ -16,6 +16,8 @@ const Notice = () => {
     isActive: true
   });
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
     fetchNotices();
   }, []);
@@ -23,7 +25,7 @@ const Notice = () => {
   const fetchNotices = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/admin/notice/');
+      const response = await axios.get(`${API_BASE_URL}/api/admin/notice/`);
       if (response.data.success) {
         setNotices(response.data.data);
       }
@@ -47,7 +49,7 @@ const Notice = () => {
     try {
       if (editingNotice) {
         // Update existing notice
-        const response = await axios.put('http://localhost:5000/api/admin/notice/update', {
+        const response = await axios.put(`${API_BASE_URL}/api/admin/notice/update`, {
           id: editingNotice._id,
           ...formData
         });
@@ -58,7 +60,7 @@ const Notice = () => {
         }
       } else {
         // Create new notice
-        const response = await axios.post('http://localhost:5000/api/admin/notice/create', formData);
+        const response = await axios.post(`${API_BASE_URL}/api/admin/notice/create`, formData);
         if (response.data.success) {
           alert('Notice created successfully!');
           resetForm();
@@ -88,7 +90,7 @@ const Notice = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this notice?')) {
       try {
-        const response = await axios.delete('http://localhost:5000/api/notice/delete', {
+        const response = await axios.delete(`${API_BASE_URL}/api/notice/delete`, {
           data: { id }
         });
         if (response.data.success) {
@@ -104,7 +106,7 @@ const Notice = () => {
 
   const handleToggleStatus = async (id) => {
     try {
-      const response = await axios.put('http://localhost:5000/api/notice/toggle-status', { id });
+      const response = await axios.put(`${API_BASE_URL}/api/notice/toggle-status`, { id });
       if (response.data.success) {
         alert(response.data.message);
         fetchNotices();

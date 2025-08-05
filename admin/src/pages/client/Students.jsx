@@ -7,11 +7,13 @@ const Students = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   // Fetch students data
   const fetchStudents = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/admin/student");
+      const response = await axios.get(`${API_BASE_URL}/api/admin/student`);
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching students:", error);

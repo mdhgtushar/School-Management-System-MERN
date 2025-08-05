@@ -8,11 +8,13 @@ const Classes = () => {
   const [loading, setLoading] = useState(false);
   const [editingClass, setEditingClass] = useState(null);
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   // Get all classes
   const getClasses = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/class");
+      const response = await axios.get(`${API_BASE_URL}/api/admin/class`);
       setClasses(response.data);
     } catch (error) {
       console.error("Error fetching classes:", error);
@@ -40,14 +42,14 @@ const Classes = () => {
 
       if (editingClass) {
         // Update existing class
-        await axios.put(`http://localhost:5000/api/admin/class/update`, {
+        await axios.put(`${API_BASE_URL}/api/admin/class/update`, {
           id: editingClass._id,
           ...formData
         });
         alert("Class updated successfully!");
       } else {
         // Create new class
-        await axios.post("http://localhost:5000/api/admin/class/create", formData);
+        await axios.post(`${API_BASE_URL}/api/admin/class/create`, formData);
         alert("Class created successfully!");
       }
 
@@ -65,7 +67,7 @@ const Classes = () => {
   const deleteClass = async (id) => {
     if (window.confirm("Are you sure you want to delete this class?")) {
       try {
-        await axios.delete("http://localhost:5000/api/admin/class/delete", {
+        await axios.delete(`${API_BASE_URL}/api/admin/class/delete`, {
           params: { id }
         });
         alert("Class deleted successfully!");

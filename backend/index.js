@@ -16,8 +16,8 @@ app.use(cors());
 dotenv.config();
 
 //dbconnect
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/school_MS', (err) => {
-  if (err) {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://mdhgtushar:DTtZgDAU3i5Ujg6b@cluster0.0ba1y.mongodb.net/schoolms', (err) => {
+  if (err) { 
     console.log("DB NOT CONNECTED");
     console.log(err)
   } else {
